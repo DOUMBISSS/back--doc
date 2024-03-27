@@ -15,7 +15,6 @@ import 'dotenv/config';
 
 const app = express();
 const port = process.env.PORT;
-// const hostname = process.env.REMOTE_CLIENT_APP;
 
 app.use(bodyParser.json());
 app.use(cors())
@@ -24,24 +23,6 @@ const database = new Database();
 
 Database.connect();
 
-
-
-
-
-app.get('/users',function(req,res){
-                        User.find({})
-                        .then((doc)=>{res.send(doc)})
-                        .catch(err => {console.log(err);      
-                            })
-
-})
-
-app.get('/question',function(req,res){
-    res.json({
-        title:req.body.title,
-        content:req.body.content,
-    })
-})
 
 app.post('/products',function(req,res){
     const newProduct=new Product(req.body)
